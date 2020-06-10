@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 // styled components 
-import { createStage } from '../gameHelpers'
+import { createStage, checkCollision } from '../gameHelpers'
 import { StyledTetris, StyledTetrisWrapper } from './styles/StyledTetris'
 
 //custom hooks 
@@ -15,7 +15,7 @@ import StartButton from './StartButton'
 const Tetris = () => {
 
     // state 
-    const [dropTime, setDropTime] = useState(null)
+    // const [dropTime, setDropTime] = useState(null)
     const [gameOver, setGameOver] = useState(false)
 
     // custom hooks 
@@ -25,13 +25,16 @@ const Tetris = () => {
     console.log('re-render')
 
     const movePlayer = dir => { 
-        updatePlayerPos({x: dir, y: 0}); 
+        if (!checkCollision(player, stage, {x: dir, y: 0})) {
+            updatePlayerPos({x: dir, y: 0}); 
+        }
     }
 
     const startGame = () => {
         // reset everything 
         setStage(createStage())
         resetPlayer(); 
+        //setGameOver(false)
     }
     
     const drop = () => {
@@ -65,9 +68,9 @@ const Tetris = () => {
                         ? ( <Display gameOver={gameOver} text="Game Over" /> ) 
                         : (
                         <div>
-                        <Display text="Score" /> 
-                        <Display text="Rows" /> 
-                        <Display text="Level" /> 
+                            <Display text="Score" /> 
+                            <Display text="Rows" /> 
+                            <Display text="Level" /> 
                         </div>
                         )
                     }

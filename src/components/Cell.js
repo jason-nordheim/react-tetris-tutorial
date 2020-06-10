@@ -3,7 +3,6 @@ import { StyledCell } from './styles/StyledCell.js'
 import { TETROMINOS } from '../tetrominos'
 
 const Cell = ({type}) => {
-    console.log('type', type)
     return  <StyledCell type={type} color={TETROMINOS[type].color} /> 
 }
 

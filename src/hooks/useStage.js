@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react'
 import { createStage } from '../gameHelpers'
 
 export const useStage = (player, resetPlayer) => {
-    console.log('player', player)
     const [stage, setStage] = useState(createStage())
+    console.log(`player ${Date.now().toString()}`, player)
 
     useEffect(() => {
-        const updateStage = previousStage => {
+        const updateStage = prevStage => {
             // flush the stage 
-            const newStage = previousStage.map(row => 
+            const newStage = prevStage.map(row => 
                 row.map(cell => (cell[1] === 'clear' ? [0, 'clear']: cell))
             )
 
@@ -16,16 +16,22 @@ export const useStage = (player, resetPlayer) => {
             player.tetromino.forEach((row, y) => {
                 row.forEach((value, x) => {
                     if(value !== 0) {
-                        const position = { x: x + player.pos.x, y: y + player.pos.y}
-                        newStage[position.y][position.x] = [value, `${player.collided ? 'merged': 'clear'}`]
+                        newStage[y + player.pos.y][x + player.pos.x] 
+                        = [value, `${player.collided ? 'merged': 'clear'}`]
                     }
                 })
             })
+            // check if we collided 
+
+            if(player.collided) resetPlayer() 
+
             return newStage
         }
 
+        console.log('updating stage')
         setStage(prev => updateStage(prev))
-    }, [player])
+        console.log('stage update complete')
+    }, [player, resetPlayer])
 
     return [stage, setStage]
 }
