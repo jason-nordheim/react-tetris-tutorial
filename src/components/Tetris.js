@@ -19,13 +19,13 @@ const Tetris = () => {
     const [gameOver, setGameOver] = useState(false)
 
     // custom hooks 
-    const [player, updatePlayerPosition, resetPlayer ] = usePlayer(); 
+    const [player, updatePlayerPos, resetPlayer ] = usePlayer(); 
     const [stage, setStage] = useStage(player, resetPlayer); 
 
     console.log('re-render')
 
-    const movePlayer = direction => {
-        updatePlayerPosition({x: direction, y: 0}); 
+    const movePlayer = dir => { 
+        updatePlayerPos({x: dir, y: 0}); 
     }
 
     const startGame = () => {
@@ -35,18 +35,20 @@ const Tetris = () => {
     }
     
     const drop = () => {
-        updatePlayerPosition({x: 0, y: 1, collided: false})
+        updatePlayerPos({x: 0, y: 1, collided: false})
     }
+    
     const dropPlayer = () => {
         drop()
     } 
+
     const move = ({ keyCode }) => {
         if(!gameOver) {
             if(keyCode === 37) {
                 movePlayer(-1) // to the left (left Arrow Key)
-            } else if (keyCode == 39) {
+            } else if (keyCode === 39) {
                 movePlayer(1) // to the right (Right Arrow Key)
-            } else if (keyCode == 40) {
+            } else if (keyCode === 40) {
                 dropPlayer(); 
             }
         }
@@ -69,7 +71,7 @@ const Tetris = () => {
                         </div>
                         )
                     }
-                    <StartButton onClick={e => startGame()} /> 
+                    <StartButton callback={startGame} /> 
                 </aside>
             </StyledTetris>
         </StyledTetrisWrapper>

@@ -11,7 +11,7 @@ export const usePlayer = () => {
         collided: false
     })
 
-    const updatePlayerPosition = ({x, y, collided}) => {
+    const updatePlayerPos = ({x, y, collided}) => {
         setPlayer(prev => ({
             ...prev, 
             pos: { x: (prev.pos.x += x), y: (prev.pos.y += y)}, 
@@ -21,11 +21,11 @@ export const usePlayer = () => {
 
     const resetPlayer = useCallback(() => {
         setPlayer({
-            pos: {x: STAGE_WIDTH / 2 - 2, y: 0 }, 
-            tetrimino: randomTetromino().shape, 
+            pos: {x: (STAGE_WIDTH / 2 - 2), y: 0 }, 
+            tetromino: randomTetromino().shape, 
             collided: false 
         })
     }, [])
 
-    return [player, updatePlayerPosition, resetPlayer]
+    return [player, updatePlayerPos, resetPlayer]
 }
