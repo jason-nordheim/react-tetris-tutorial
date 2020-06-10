@@ -27,11 +27,13 @@ const Tetris = () => {
     const movePlayer = direction => {
         updatePlayerPosition({x: direction, y: 0}); 
     }
+
     const startGame = () => {
         // reset everything 
         setStage(createStage())
         resetPlayer(); 
     }
+    
     const drop = () => {
         updatePlayerPosition({x: 0, y: 1, collided: false})
     }

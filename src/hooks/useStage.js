@@ -16,8 +16,8 @@ export const useStage = (player, resetPlayer) => {
             player.tetromino.forEach((row, y) => {
                 row.forEach((value, x) => {
                     if(value !== 0) {
-                        newStage[y + player.pos.y][x + player.pos.x] = 
-                        [value, `${player.collided ? 'merged': 'clear'}`]
+                        const position = { x: x + player.pos.x, y: y + player.pos.y}
+                        newStage[position.y][position.x] = [value, `${player.collided ? 'merged': 'clear'}`]
                     }
                 })
             })
@@ -25,7 +25,7 @@ export const useStage = (player, resetPlayer) => {
         }
 
         setStage(prev => updateStage(prev))
-    }, [player.collided, player.x, player.y, player.tetrimino])
+    }, [player.collided, player.pos.x, player.pos.y, player.tetrimino])
 
     return [stage, setStage]
 }
