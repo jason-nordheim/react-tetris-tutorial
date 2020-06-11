@@ -5,8 +5,9 @@ import { createStage, checkCollision } from '../gameHelpers'
 import { StyledTetris, StyledTetrisWrapper } from './styles/StyledTetris'
 
 //custom hooks 
-import { usePlayer } from '../hooks/usePlayer'; 
-import { useStage } from '../hooks/useStage'; 
+import { usePlayer } from '../hooks/usePlayer'
+import { useStage } from '../hooks/useStage'
+import { useinterval, useInterval } from '../hooks/useInterval'
 
 import Stage from './Stage'
 import Display from './Display'
@@ -33,6 +34,7 @@ const Tetris = () => {
     const startGame = () => {
         // reset everything 
         setStage(createStage())
+        setDropTime(1000) // 1 second 
         resetPlayer(); 
         setGameOver(false)
     }
@@ -68,6 +70,10 @@ const Tetris = () => {
             }
         }
     } 
+
+    useInterval(() => {
+        drop()
+    }, dropTime)
 
     return (
         // need to make button to register keypresses
