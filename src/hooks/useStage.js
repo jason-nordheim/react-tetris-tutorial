@@ -3,9 +3,26 @@ import { createStage } from '../gameHelpers'
 
 export const useStage = (player, resetPlayer) => {
     const [stage, setStage] = useState(createStage())
+    const [rowsCleared, setRowsCleared] = useState(0)
     //console.log(`player ${Date.now().toString()}`, player)
 
     useEffect(() => {
+        setRowsCleared(0) 
+
+        const sweepRows = (newStage) => {
+            return newStage.reduce((acc, row) => {
+                if (row.findIndex(cell => cell[0] === 0) === -1) { // returns -1 if no match 
+                    // row filled, slide the row off the stage 
+                    setRowsCleared(prev => prev + 1)
+                    acc.unshift(new Array(newStage[0].length).fill([0, 'clear']))
+                    return acc 
+                }
+                // row not filled, keep in newStage 
+                acc.push(row)
+                return acc
+            }, [])
+        }
+
         const updateStage = prevStage => {
             // flush the stage 
             const newStage = prevStage.map(row => 
@@ -23,7 +40,11 @@ export const useStage = (player, resetPlayer) => {
             })
 
             // check if we collided 
-            if(player.collided) resetPlayer() 
+            if(player.collided) {
+                resetPlayer() 
+                return sweepRows(newStage)
+            } 
+
 
             return newStage
         }
@@ -33,5 +54,5 @@ export const useStage = (player, resetPlayer) => {
         console.log('stage update complete')
     }, [player, resetPlayer])
 
-    return [stage, setStage]
+    return [stage, setStage, rowsCleared]
 }
