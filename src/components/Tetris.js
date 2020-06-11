@@ -7,7 +7,7 @@ import { StyledTetris, StyledTetrisWrapper } from './styles/StyledTetris'
 //custom hooks 
 import { usePlayer } from '../hooks/usePlayer'
 import { useStage } from '../hooks/useStage'
-import { useinterval, useInterval } from '../hooks/useInterval'
+import { useInterval } from '../hooks/useInterval'
 
 import Stage from './Stage'
 import Display from './Display'
@@ -54,8 +54,19 @@ const Tetris = () => {
     }
     
     const dropPlayer = () => {
+        console.log('interval OFF')
+        setDropTime(null) // stop dropping the piece if a user has already requested a drop
         drop()
     } 
+
+    const keyUp = ({ keyCode }) => {
+        if(!gameOver) {
+            if(keyCode === 40) {
+                console.log('interval ON')
+                setDropTime(1000)
+            }
+        }
+    }
 
     const move = ({ keyCode }) => {
         if(!gameOver) {
@@ -77,7 +88,12 @@ const Tetris = () => {
 
     return (
         // need to make button to register keypresses
-        <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown={e => move(e)}>
+        <StyledTetrisWrapper 
+            role="button" 
+            tabIndex="0" 
+            onKeyDown={e => move(e)} 
+            onKeyUp={keyUp}
+            >
             <StyledTetris >
                 <Stage stage={stage}/> 
                 <aside>
