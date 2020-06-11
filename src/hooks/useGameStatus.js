@@ -10,8 +10,9 @@ export const useGameStatus = rowsCleared => {
 
     const calcScore = useCallback(() => {
         // if any rows were cleared, then we can calculate score 
-        if ( rowsCleared > 0 ) { 
-            setScore(prev => prev + linePoints[rowsCleared - 1] * (level + 1))
+        if(rowsCleared > 0) { 
+            const pointsScored = (linePoints[rowsCleared - 1] * (level + 1))
+            setScore(prev => prev + pointsScored)
             setRows(prev => prev + rowsCleared)
         }
     }, [level, linePoints, rowsCleared])
@@ -20,5 +21,5 @@ export const useGameStatus = rowsCleared => {
         calcScore()
     }, [calcScore, rowsCleared, score]) // dependencies 
 
-    return [score, setScore, rows, setRows, setLevel]
+    return [score, setScore, rows, setRows, level, setLevel]
 }
