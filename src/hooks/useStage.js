@@ -3,7 +3,7 @@ import { createStage } from '../gameHelpers'
 
 export const useStage = (player, resetPlayer) => {
     const [stage, setStage] = useState(createStage())
-    console.log(`player ${Date.now().toString()}`, player)
+    //console.log(`player ${Date.now().toString()}`, player)
 
     useEffect(() => {
         const updateStage = prevStage => {
@@ -21,8 +21,8 @@ export const useStage = (player, resetPlayer) => {
                     }
                 })
             })
-            // check if we collided 
 
+            // check if we collided 
             if(player.collided) resetPlayer() 
 
             return newStage
