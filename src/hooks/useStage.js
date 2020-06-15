@@ -44,14 +44,10 @@ export const useStage = (player, resetPlayer) => {
                 resetPlayer() 
                 return sweepRows(newStage)
             } 
-
-
             return newStage
         }
 
-        console.log('updating stage')
         setStage(prev => updateStage(prev))
-        console.log('stage update complete')
     }, [player, resetPlayer])
 
     return [stage, setStage, rowsCleared]

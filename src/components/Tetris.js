@@ -72,6 +72,12 @@ const Tetris = () => {
         drop()
     } 
 
+    const dropPlayerToBottom = () => {
+        while(!checkCollision(player, stage, {x: 0, y: 1})){
+            updatePlayerPos({x: 0, y: 1, collided: false})
+        }
+    }
+
     const keyUp = ({ keyCode }) => {
         if(!gameOver) {
             if(keyCode === 40) {
@@ -81,7 +87,9 @@ const Tetris = () => {
         }
     }
 
-    const move = ({ keyCode }) => {
+    const move = (event) => {
+        event.preventDefault()
+        const { keyCode } = event
         if(!gameOver) {
             if(keyCode === 37) {
                 movePlayer(-1) // to the left (left Arrow Key)
@@ -91,6 +99,8 @@ const Tetris = () => {
                 dropPlayer(); 
             } else if (keyCode === 38) { // rotate clockwise (up arrow) 
                 playerRotate(stage, 1)
+            } else if (keyCode === 32){
+                dropPlayerToBottom()
             }
         }
     } 
@@ -104,7 +114,7 @@ const Tetris = () => {
         <StyledTetrisWrapper 
             role="button" 
             tabIndex="0" 
-            onKeyDown={e => move(e)} 
+            onKeyDown={move} 
             onKeyUp={keyUp}
             >
             <StyledTetris >
