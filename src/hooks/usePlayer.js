@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
 
-import {STAGE_WIDTH, checkCollision} from '../gameHelpers'
+import {STAGE_WIDTH, checkCollision} from '../util/gameHelpers'
 import {randomTetromino, TETROMINOS} from '../tetrominos'
 
 
