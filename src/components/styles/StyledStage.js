@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+/**
+ * Styled Stage Component, wrapping the stage and using props to adjust
+ * the size of the tetris grid 
+ */
 export const StyledStage = styled.div`
     display: grid; 
     grid-template-rows: repeat(

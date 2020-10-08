@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 
-
+/**
+ * Cell styled with styled-components using props to determine 
+ * the color of the tetrimino 
+ */
 export const StyledCell = styled.div`
     width: auto; 
     background: rgba(${props => props.color}, 0.8); 
