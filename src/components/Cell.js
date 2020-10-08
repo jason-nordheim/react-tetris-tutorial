@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyledCell } from './styles/StyledCell.js'
-import { TETROMINOS } from '../tetrominos'
+import { TETROMINOS } from '../util/tetrominos'
 
 /**
  * Represents a cell on the stage 
