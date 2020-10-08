@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
-
+/**
+ * Wrapps a frozen cell component adding css styling using styled components
+ */
 export const FrozenStyledCell = styled.div`
     width: auto; 
     background: rgba(${props => props.color}, 0.2); 

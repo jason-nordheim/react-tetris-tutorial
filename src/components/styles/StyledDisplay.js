@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+/**
+ * Styles the display section using styled components 
+ * 
+ * will be red if the game is over 
+ */
 export const StyledDisplay = styled.div`
     box-sizing: border-box; 
     display: flex; 

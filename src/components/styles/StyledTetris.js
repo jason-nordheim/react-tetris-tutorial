@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 
 
+/**
+ * Wraps the root cgame component 
+ */
 export const StyledTetrisWrapper = styled.div`
     width: 100vw; 
     height: 100vh; 
@@ -9,6 +12,9 @@ export const StyledTetrisWrapper = styled.div`
     overflow: hidden; 
 `
 
+/**
+ * Wrapper for the actual game portion 
+ */
 export const StyledTetris = styled.div`
     display: flex; 
     align-items: flex-start; 

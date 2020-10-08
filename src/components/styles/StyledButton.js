@@ -1,5 +1,8 @@
 import styled from 'styled-components'
 
+/**
+ * Styles the buttons displayed on the screen 
+ */
 export const StyledButton = styled.button`
     box-sizing: border-box; 
     margin: 0 0 20px 0; 

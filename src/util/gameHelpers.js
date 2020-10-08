@@ -1,6 +1,11 @@
 export const STAGE_WIDTH = 12
 export const STAGE_HEIGHT = 20 
 
+/**
+ * Creates a new game 'stage' (the grid on which the tetrominos are placed)
+ * that is an array of arrays filled with an array that has two values: 
+ *  1. Number ('0' indicates empty)
+ */
 export const createStage = () => 
     Array.from(Array(STAGE_HEIGHT), () => 
         new Array(STAGE_WIDTH).fill([0, 'clear']))
