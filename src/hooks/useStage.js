@@ -1,14 +1,27 @@
 import { useState, useEffect } from 'react'
 import { createStage } from '../util/gameHelpers'
 
+/**
+ * Hook representing the grid upon which the player-piece (tetrominos) is placed
+ * @param {*} player 
+ * @param {*} resetPlayer 
+ */
 export const useStage = (player, resetPlayer) => {
     const [stage, setStage] = useState(createStage())
     const [rowsCleared, setRowsCleared] = useState(0)
-    //console.log(`player ${Date.now().toString()}`, player)
 
+    /**
+     * anytime the player piece changes (new position, rotation, etc.)
+     * check to see if we can clear any rows and then update the stage with the 
+     * rows cleared  
+     */
     useEffect(() => {
         setRowsCleared(0) 
 
+        /**
+         * function to clear any rows on the stage that have been completed 
+         * @param {stage} newStage 
+         */
         const sweepRows = (newStage) => {
             return newStage.reduce((acc, row) => {
                 if (row.findIndex(cell => cell[0] === 0) === -1) { // returns -1 if no match 
@@ -23,6 +36,10 @@ export const useStage = (player, resetPlayer) => {
             }, [])
         }
 
+        /**
+         * handles the updating of the stage with each tetromino
+         * @param {stage} prevStage 
+         */
         const updateStage = prevStage => {
             // flush the stage 
             const newStage = prevStage.map(row => 
