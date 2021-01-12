@@ -3,11 +3,11 @@ import BoardComponent from "./BoardComponent";
 import { useTetris } from "../hooks/useTetris";
 
 function TetrisComponent() {
-  const [board] = useTetris();
+  const tetris = useTetris();
   return (
     <div className="tetris">
       <h1 className="tetris__title">Tetris</h1>
-      <BoardComponent gameBoard={board} />
+      <BoardComponent tetris={tetris} />
     </div>
   );
 }
