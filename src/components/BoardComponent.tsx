@@ -1,11 +1,12 @@
 import React from "react";
 import NodeComponent from "./NodeComponent";
+import { ITetris } from "../shared/interfaces";
 
 function BoardComponent(props: BoardComponentProps) {
-  const { gameBoard } = props;
+  const { tetris } = props;
   return (
     <div className="board">
-      {gameBoard.map((rows, r) => {
+      {tetris.board.map((rows, r) => {
         return rows.map((n, c) => {
           return <NodeComponent key={`${r},${c}`} type={n} row={r} col={c} />;
         });
@@ -15,7 +16,7 @@ function BoardComponent(props: BoardComponentProps) {
 }
 
 interface BoardComponentProps {
-  gameBoard: Array<Array<string>>;
+  tetris: ITetris;
 }
 
 export default BoardComponent;
