@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Turret+Road:wght@200;300;400;500;700;800&display=swap');
+
+:root {
+  --node-width: 20px; 
+  --node-height: 20px; 
+}
+body {
+  font-family: 'Turret Road', cursive;
+  box-sizing: border-box;
+}
+
+.tetris { 
+  display: flex;
+  flex-direction: column;
+}
+.tetris__title {
+  display: flex;
+  justify-content: center;
+}
+.board { 
+  display: grid;
+  align-self: center;
+  grid-template-columns: repeat(15, var(--node-width));
+  grid-template-rows: repeat(30,var(--node-height)); 
+  padding: 1rem;
+  width: fit-content;
+  background-color: beige;
+  border: 1px solid black;
+}
+.node {
+  opacity: 0.8;
+}
+.node.empty {
+  display: grid;
+  height: var(--node-height); 
+  width: var(var(--node-width)); 
+  border: 1px solid white;
+  background-color: gray;
+}
