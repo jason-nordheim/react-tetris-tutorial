@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { GameStatus } from "../shared/enums";
+import { ITetris } from "../shared/interfaces";
+import { useBoard } from "./useBoard";
+import { useGameStatus } from "./useGameStatus";
 
-const newBoard = (rows: number, cols: number) => {
-  return Array.from(Array(rows), () => new Array(cols).fill(""));
-};
+export function useTetris(): ITetris {
+  const [board] = useBoard(30, 15);
+  const [status] = useGameStatus(board);
 
-export function useTetris() {
-  const [board, setBoard] = useState(newBoard(30, 15));
+  // start the game
+  useEffect(() => {
+    return () => {};
+  }, []);
 
-  return [board];
+  return { board, status };
 }
