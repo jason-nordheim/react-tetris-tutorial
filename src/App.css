@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Turret+Road:wght@200;300;400;500;700;800&display=swap');
 
 :root {
-  --node-width: 27px; 
-  --node-height: 27px; 
+  --columns: 10; 
+  --rows: 22; 
+  --node-width: 30px; 
+  --node-height: 30px; 
 }
 body {
   font-family: 'Turret Road', cursive;
@@ -23,8 +25,8 @@ body {
 .board { 
   display: grid;
   align-self: center;
-  grid-template-columns: repeat(15, var(--node-width));
-  grid-template-rows: repeat(30,var(--node-height)); 
+  grid-template-columns: repeat(var(--columns), var(--node-width));
+  grid-template-rows: repeat(var(--rows),var(--node-height)); 
   padding: 1rem;
   width: fit-content;
   background-color: beige;

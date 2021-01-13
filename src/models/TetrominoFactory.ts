@@ -1,6 +1,15 @@
 import { Color } from "./Color";
 
 export class TetrominoFactory {
+  public static readonly ShapeIdentifiers: string[] = [
+    "I",
+    "J",
+    "L",
+    "O",
+    "S",
+    "Z",
+    "T",
+  ];
   /**
    * Gets the color associated with the shape identifier
    * @param shapeIdentifier
