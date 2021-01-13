@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Turret+Road:wght@200;300;400;500;700;800&display=swap');
 
 :root {
-  --node-width: 20px; 
-  --node-height: 20px; 
+  --node-width: 27px; 
+  --node-height: 27px; 
 }
 body {
   font-family: 'Turret Road', cursive;
@@ -12,6 +12,9 @@ body {
 .tetris { 
   display: flex;
   flex-direction: column;
+}
+.tetris__container {
+  display: flex;
 }
 .tetris__title {
   display: flex;
@@ -36,4 +39,14 @@ body {
   width: var(var(--node-width)); 
   border: 1px solid white;
   background-color: gray;
+}
+.controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+button.controls__start {
+  display: flex;
+  align-self: center;
 }
