@@ -52,7 +52,6 @@ export class TetrominoFactory {
           ["", "L", ""],
           ["", "L", "L"],
         ];
-        break;
       case "O":
         return [
           ["O", "O"],
